@@ -1,0 +1,771 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saklen & Rinaj — A Blessed Nikah</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div id="cursor">
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M16 2L19 11.5H29L21.5 17.5L24.5 27L16 21.5L7.5 27L10.5 17.5L3 11.5H13Z" fill="#D4A224" stroke="#F5C842"
+        stroke-width=".6" />
+    </svg>
+  </div>
+  <div id="cursor-ring"></div>
+  <!-- ===== NASHEED PLAYER ===== -->
+  <!-- Tala'al Badru 'Alayna ✦ classic Islamic wedding vocal nasheed -->
+  <audio id="nasheedAudio" preload="auto" loop crossorigin="anonymous">
+    <!-- Using a highly reliable direct CDN link for this public domain nasheed -->
+    <source src="https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3" type="audio/mpeg">
+  </audio>
+  <div id="nasheed-player">
+    <button id="nasheedBtn" title="Play / Pause Nasheed">&#9654;</button>
+  </div>
+  <!-- ===== CURTAIN ===== -->
+  <div id="curtain-wrap">
+    <div class="c-rod"></div>
+    <div class="c-rings" id="ringRow"></div>
+    <div class="c-panels" id="cPanels">
+      <!-- LEFT -->
+      <div class="c-left">
+        <div class="c-pattern"></div>
+        <div class="c-crescent">☽</div>
+      </div>
+      <!-- RIGHT -->
+      <div class="c-right">
+        <div class="c-pattern"></div>
+        <div class="c-crescent">☽</div>
+      </div>
+    </div>
+    <!-- WELCOME CONTENT -->
+    <div class="c-content">
+      <div class="c-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
+      <div class="c-tagline">In the Name of Allah, the Most Gracious, the Most Merciful</div>
+      <div class="c-divider">
+        <div class="dl"></div>
+        <div class="ds">✦</div>
+        <div class="ds" style="color:var(--ruby);">❧</div>
+        <div class="ds">✦</div>
+        <div class="dl"></div>
+      </div>
+      <div class="c-names">
+        <span class="gname">Saklen</span>
+        <span class="and">&amp;</span>
+        <span class="bname">Rinaj</span>
+      </div>
+      <div class="c-arabic-names">سَكْلِن ✦ رِينَاج</div>
+      <div class="c-date">15th Sha'ban 1446 &nbsp;|&nbsp; February 15, 2026</div>
+      <div class="c-hadith">
+        "When a man marries, he has fulfilled half of his religion."<br>
+        ✦ Hadith, Al-Bayhaqi
+      </div>
+      <button class="open-btn" onclick="openCurtain()">
+        <span class="btn-icon">☽</span>
+        Enter &amp; Celebrate
+        <span class="btn-icon">☽</span>
+      </button>
+    </div>
+  </div>
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-logo">بِسْمِ اللهِ ✦ Saklen & Rinaj</div>
+  </nav>
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="section-frame">
+      <div class="hero-geo">
+        <div class="mandala"></div>
+        <div class="mandala"></div>
+        <div class="mandala"></div>
+      </div>
+      <div class="hero-blob b1"></div>
+      <div class="hero-blob b2"></div>
+      <div class="hero-blob b3"></div>
+      <!-- Corner SVG ornaments -->
+      <div class="corner c-tl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,5 L45,5 M5,5 L5,45" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,5 L25,25 M18,5 L5,18 M32,5 L5,32 M45,5 L5,45" stroke="#D4A224" stroke-width=".5" opacity=".5" />
+          <circle cx="5" cy="5" r="4" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" opacity=".4" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" opacity=".4" />
+        </svg>
+      </div>
+      <div class="corner c-tr">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,5 L45,5 M5,5 L5,45" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,5 L25,25 M18,5 L5,18 M32,5 L5,32" stroke="#D4A224" stroke-width=".5" opacity=".5" />
+          <circle cx="5" cy="5" r="4" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="corner c-bl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,5 L45,5 M5,5 L5,45" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,5 L25,25 M18,5 L5,18 M32,5 L5,32" stroke="#D4A224" stroke-width=".5" opacity=".5" />
+          <circle cx="5" cy="5" r="4" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="corner c-br">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,5 L45,5 M5,5 L5,45" stroke="#D4A224" stroke-width="1.5" />
+          <circle cx="5" cy="5" r="4" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="hero-content-wrapper">
+        <div class="hero-inner" id="hero-main-content">
+          <div class="bismillah-hero hero-anim">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
+          <div class="hero-anim"
+            style="width:120px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 18px;opacity:.5;">
+          </div>
+          <div class="hero-arabic-sub hero-anim">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+          <div class="hero-names hero-anim anim-zoom anim-d1">
+            <span class="gn">Saklen</span>
+            <div class="and" style="margin: 0;">❧ &amp; ❧</div>
+            <span class="bn">Rinaj</span>
+          </div>
+          <div class="hero-divider hero-anim">
+            <div class="hdl"></div>
+            <div class="hds">✦</div>
+            <div class="hds">✦</div>
+            <div class="hds">✦</div>
+            <div class="hdl"></div>
+          </div>
+          <div class="hero-date hero-anim">15th Sha'ban 1446 &nbsp;|&nbsp; February 15, 2026</div>
+          <div class="hero-sub hero-anim">Joined in Nikah, by the Mercy of Allah ﷻ</div>
+          <!-- Mosque background for hero -->
+          <div class="mosque-bg" aria-hidden="true" style="pointer-events: none;">
+            <svg viewBox="0 0 1400 520" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="opacity: 0.15; z-index: -1;">
+              <!-- main dome -->
+              <ellipse cx="700" cy="200" rx="180" ry="170" stroke="#D4A224" stroke-width="2" />
+              <path d="M560,200 Q700,30 840,200" stroke="#D4A224" stroke-width="2" fill="none" />
+              <!-- crescent on dome -->
+              <circle cx="700" cy="48" r="22" stroke="#D4A224" stroke-width="2" fill="none" />
+              <circle cx="712" cy="44" r="16" fill="#1C0E30" />
+              <!-- left minaret -->
+              <rect x="340" y="120" width="50" height="250" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <path d="M330,120 Q365,60 390,120" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <circle cx="365" cy="55" r="12" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <!-- right minaret -->
+              <rect x="1010" y="120" width="50" height="250" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <path d="M1000,120 Q1035,60 1060,120" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <circle cx="1035" cy="55" r="12" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <!-- main hall walls -->
+              <rect x="490" y="330" width="420" height="180" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <!-- arched door -->
+              <path d="M650,510 L650,430 Q700,390 750,430 L750,510" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <!-- side arches -->
+              <path d="M510,430 L510,390 Q535,360 560,390 L560,430" stroke="#D4A224" stroke-width="1" fill="none" />
+              <path d="M840,430 L840,390 Q865,360 890,390 L890,430" stroke="#D4A224" stroke-width="1" fill="none" />
+              <!-- ground line -->
+              <line x1="80" y1="510" x2="1320" y2="510" stroke="#D4A224" stroke-width="1" opacity="0.4" />
+              <!-- stars -->
+              <text x="180" y="180" fill="#D4A224" font-size="24" opacity="0.5">✦</text>
+              <text x="1180" y="180" fill="#D4A224" font-size="24" opacity="0.5">✦</text>
+              <text x="690" y="20" fill="#D4A224" font-size="18" opacity="0.4">✦</text>
+            </svg>
+            <!-- twinkling stars -->
+            <span class="mosque-star" style="left:8%;top:15%;font-size:14px;animation-duration:2.8s;">✦</span>
+            <span class="mosque-star" style="left:22%;top:8%;font-size:10px;animation-duration:3.5s;">✦</span>
+            <span class="mosque-star" style="left:75%;top:12%;font-size:12px;animation-duration:2.2s;">✦</span>
+            <span class="mosque-star" style="left:90%;top:20%;font-size:16px;animation-duration:4s;">✦</span>
+          </div>
+        </div>
+        <!-- Desktop places these in 1st/3rd grid col, mobile places them side-by-side at bottom -->
+        <div class="mobile-photo-duo">
+          <!-- GROOM - Saklen -->
+          <div class="photo-frame hero-anim anim-left anim-d2" style="order: -1;">
+            <div class="photo-oval" id="groomOval">
+              <img src="images/wedding4.jpg" alt="Saklen ✦ Groom" loading="lazy">
+            </div>
+            <div class="photo-glow"></div>
+            <div class="photo-label">Saklen<br><span class="photo-label-ar">سَكْلِن</span></div>
+          </div>
+          <!-- BRIDE - Rinaj -->
+          <div class="photo-frame hero-anim anim-right anim-d3">
+            <div class="photo-oval" id="brideOval">
+              <img src="images/wedding1.jpg" alt="Rinaj ✦ Bride" loading="lazy">
+            </div>
+            <div class="photo-glow"></div>
+            <div class="photo-label">Rinaj<br><span class="photo-label-ar">رِينَاج</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <svg width="14" height="26" viewBox="0 0 14 26">
+          <rect x="5" y="0" width="4" height="14" rx="2" fill="#D4A224" />
+          <path d="M0,18 L7,26 L14,18" stroke="#D4A224" fill="none" stroke-width="1.5" />
+        </svg>
+      </div>
+    </div>
+  </section>
+  <!-- ===== COUPLE ===== -->
+  <section id="couple">
+    <div class="section-frame">
+      <!-- Couple Corners: Flowing curved arches -->
+      <div class="section-corner sc-tl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,5 45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M15,45 Q15,15 45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-tr">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,5 45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M15,45 Q15,15 45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-bl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,5 45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M15,45 Q15,15 45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-br">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,5 45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M15,45 Q15,15 45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <!-- Mosque accent background -->
+      <div class="mosque-bg" aria-hidden="true">
+        <svg viewBox="0 0 1400 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="700" cy="220" rx="160" ry="150" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M580,220 Q700,80 820,220" stroke="#D4A224" stroke-width="1.5" fill="none" />
+          <rect x="480" y="340" width="440" height="170" stroke="#D4A224" stroke-width="1.2" fill="none" />
+          <path d="M650,510 L650,430 Q700,395 750,430 L750,510" stroke="#D4A224" stroke-width="1.5" fill="none" />
+          <rect x="320" y="140" width="42" height="240" stroke="#D4A224" stroke-width="1" fill="none" />
+          <path d="M312,140 Q341,85 362,140" stroke="#D4A224" stroke-width="1" fill="none" />
+          <rect x="1038" y="140" width="42" height="240" stroke="#D4A224" stroke-width="1" fill="none" />
+          <path d="M1030,140 Q1059,85 1080,140" stroke="#D4A224" stroke-width="1" fill="none" />
+          <line x1="60" y1="510" x2="1340" y2="510" stroke="#D4A224" stroke-width="0.8" opacity="0.35" />
+        </svg>
+        <span class="mosque-star" style="left:5%;top:20%;font-size:12px;animation-duration:3.1s;">✦</span>
+        <span class="mosque-star" style="left:92%;top:15%;font-size:10px;animation-duration:2.4s;">✦</span>
+      </div>
+      <div style="max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:1;">
+        <div class="fade-up">
+          <div class="section-title">The Blessed Couple</div>
+          <div class="section-sub">مَرَاسِمُ النِّكَاحِ الْمُبَارَك</div>
+        </div>
+        <div class="couple-grid fade-up">
+          <!-- GROOM -->
+          <div class="person-card anim-left">
+            <div class="person-photo" id="groomCard">
+              <img src="images/wedding4.jpg" alt="Saklen ✦ Groom">
+            </div>
+            <div class="person-name">Saklen</div>
+            <div class="person-family">Son of a Beloved Family</div>
+            <p class="person-desc">A man of quiet strength, deep faith and a warm heart ✦ whose devotion to Allah
+              guides
+              every step of his journey.</p>
+          </div>
+          <!-- CENTER -->
+          <div class="couple-center anim-zoom anim-d2">
+            <div class="quran-verse">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا
+              إِلَيْهَا</div>
+            <div class="verse-trans">"And of His signs is that He created for you mates from yourselves that you may
+              find tranquility in them" ✦ Quran 30:21</div>
+            <div style="font-family:'Amiri',serif;color:var(--gold);font-size:3.5rem;opacity:.35;margin:8px 0;">✦
+            </div>
+            <div
+              style="font-family:'Amiri',serif;color:var(--gold-light);font-size:1.1rem;opacity:.45;letter-spacing:2px;">
+              وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
+            <div
+              style="font-size:.8rem;color:var(--cream);opacity:.4;font-style:italic;max-width:180px;text-align:center;line-height:1.6;">
+              "and He placed between you love and mercy"</div>
+          </div>
+          <!-- BRIDE -->
+          <div class="person-card anim-right anim-d1">
+            <div class="person-photo" id="brideCard">
+              <img src="images/wedding1.jpg" alt="Rinaj ✦ Bride">
+            </div>
+            <div class="person-name">Rinaj</div>
+            <div class="person-family">Daughter of a Beloved Family</div>
+            <p class="person-desc">A woman of grace, wisdom and radiant faith ✦ whose gentle spirit lights every room
+              she
+              enters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== NIKAH ===== -->
+  <section id="nikah">
+    <div class="section-frame">
+      <!-- Nikah Corners: Geometric Islamic Diamonds -->
+      <div class="section-corner sc-tl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M25,25 L35,15 L25,5 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <path d="M25,25 L15,35 L5,25 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-tr">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M25,25 L35,15 L25,5 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <path d="M25,25 L15,35 L5,25 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-bl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M25,25 L35,15 L25,5 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <path d="M25,25 L15,35 L5,25 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-br">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M25,25 L35,15 L25,5 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <path d="M25,25 L15,35 L5,25 L15,15 Z" stroke="#D4A224" stroke-width="0.5" opacity="0.6"
+            fill="rgba(212,162,36,0.1)" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="nikah-inner">
+        <div class="fade-up">
+          <div class="section-title">The Nikah Ceremony</div>
+          <div class="section-sub">مَرَاسِمُ الْحَفْل</div>
+        </div>
+        <div class="ceremony-cards fade-up">
+          <div class="ceremony-card anim-up">
+            <span class="card-icon">🌙</span>
+            <div class="card-time">9:00 AM</div>
+            <div class="card-title">Fajr Prayer &amp; Opening Du'a</div>
+            <div class="card-desc">We begin as all blessings begin ✦ gathering in prayer, seeking Allah's grace upon
+              this
+              sacred union.</div>
+            <div class="card-arabic">صَلَاةُ الفَجْر</div>
+          </div>
+          <div class="ceremony-card anim-up anim-d2">
+            <span class="card-icon">🕌</span>
+            <div class="card-time">11:00 AM</div>
+            <div class="card-title">The Nikah Contract</div>
+            <div class="card-desc">The sacred Ijab and Qabul ✦ witnessed by family, sealed by faith, in the presence
+              of
+              the Wali and Imam.</div>
+            <div class="card-arabic">عَقْدُ النِّكَاح</div>
+          </div>
+          <div class="ceremony-card anim-up anim-d4">
+            <span class="card-icon">🌹</span>
+            <div class="card-time">1:30 PM</div>
+            <div class="card-title">Walima Celebration</div>
+            <div class="card-desc">The blessed feast of Walima ✦ a Sunnah of joy, celebrated with loved ones in halal
+              happiness and gratitude.</div>
+            <div class="card-arabic">وَلِيمَة</div>
+          </div>
+        </div>
+        <div class="islamic-divider fade-up" style="margin:22px auto;">
+          <div class="idl"></div>
+          <span style="color:var(--gold);font-size:1.5rem;">✦</span>
+          <span style="font-family:'Amiri',serif;color:var(--gold);font-size:1.8rem;opacity:.65;">✦</span>
+          <span style="color:var(--gold);font-size:1.5rem;">✦</span>
+          <div class="idl"></div>
+        </div>
+        <div class="fade-up anim-down anim-d2" style="text-align:center;max-width:620px;margin:0 auto;">
+          <div
+            style="font-family:'Amiri',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);color:var(--gold-light);direction:rtl;line-height:2.1;margin-bottom:12px;">
+            بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَهُمَا فِي خَيْرٍ
+          </div>
+          <div style="font-size:.9rem;color:var(--cream);opacity:.58;font-style:italic;line-height:1.85;">
+            "May Allah bless for you, and may He bless upon you,<br>and may He join you together in goodness."
+            <div
+              style="font-size:.72rem;color:var(--gold);opacity:.45;margin-top:8px;letter-spacing:3px;text-transform:uppercase;">
+              ✦ Dua for the Newlyweds (Tirmidhi)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== VENUE ===== -->
+  <section id="venue">
+    <div class="section-frame">
+      <!-- Venue Corners: Minaret / Dome shape -->
+      <div class="section-corner sc-tl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,15 Q25,15 25,5" stroke="#D4A224" stroke-width="0.8" opacity="0.8" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-tr">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,15 Q25,15 25,5" stroke="#D4A224" stroke-width="0.8" opacity="0.8" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-bl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,15 Q25,15 25,5" stroke="#D4A224" stroke-width="0.8" opacity="0.8" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-br">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+          <path d="M5,15 Q25,15 25,5" stroke="#D4A224" stroke-width="0.8" opacity="0.8" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="venue-inner">
+        <div class="fade-up" style="text-align:center;">
+          <div class="section-title">Venue & Location</div>
+          <div class="section-sub">مَكَانُ الْحَفْل</div>
+        </div>
+        <div class="venue-grid fade-up">
+          <div class="venue-visual anim-left">
+            <!-- mosque SVG illustration -->
+            <svg viewBox="0 0 320 320" style="width:290px;height:290px;opacity:.55;">
+              <ellipse cx="160" cy="128" rx="68" ry="62" fill="none" stroke="#D4A224" stroke-width="1.5" />
+              <path d="M138,72 A28,28 0 0,1 182,72" stroke="#D4A224" stroke-width="1.5" fill="none" />
+              <text x="148" y="68" fill="#D4A224" font-size="16">✦</text>
+              <rect x="92" y="180" width="136" height="95" fill="none" stroke="#D4A224" stroke-width="1" />
+              <path d="M138,275 L138,228 Q160,210 182,228 L182,275" fill="none" stroke="#D4A224" stroke-width="1.5" />
+              <rect x="58" y="152" width="24" height="122" fill="none" stroke="#D4A224" stroke-width="1" />
+              <ellipse cx="70" cy="152" rx="14" ry="22" fill="none" stroke="#D4A224" stroke-width="1" />
+              <text x="62" y="136" fill="#D4A224" font-size="11">✦</text>
+              <rect x="238" y="152" width="24" height="122" fill="none" stroke="#D4A224" stroke-width="1" />
+              <ellipse cx="250" cy="152" rx="14" ry="22" fill="none" stroke="#D4A224" stroke-width="1" />
+              <text x="242" y="136" fill="#D4A224" font-size="11">✦</text>
+              <path d="M105,202 L105,186 Q118,175 131,186 L131,202" fill="none" stroke="#D4A224" stroke-width=".8" />
+              <path d="M189,202 L189,186 Q202,175 215,186 L215,202" fill="none" stroke="#D4A224" stroke-width=".8" />
+              <line x1="38" y1="275" x2="282" y2="275" stroke="#D4A224" stroke-width=".5" opacity=".4" />
+              <text x="28" y="95" fill="#D4A224" font-size="14" opacity=".5">✦</text>
+              <text x="272" y="95" fill="#D4A224" font-size="14" opacity=".5">✦</text>
+              <text x="150" y="30" fill="#D4A224" font-size="18" opacity=".35">✦</text>
+            </svg>
+            <div
+              style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-family:'Amiri',serif;color:var(--gold);font-size:.9rem;opacity:.5;white-space:nowrap;">
+              قَاعَةُ الْأُنْسِ</div>
+          </div>
+          <div class="anim-right anim-d1">
+            <div class="venue-name">Al-Uns Grand Hall</div>
+            <div class="venue-ar">قَاعَةُ الْأُنْسِ الْكُبْرَى</div>
+            <div class="venue-info-item">
+              <div class="venue-icon">📍</div>
+              <div class="venue-info-text">
+                <h4>Address</h4>
+                <p>12 Al-Rashid Boulevard<br>Garden District, City</p>
+              </div>
+            </div>
+            <div class="venue-info-item">
+              <div class="venue-icon">🗓️</div>
+              <div class="venue-info-text">
+                <h4>Date & Time</h4>
+                <p>Saturday, 15th February 2026<br>15 Sha'ban 1446 AH &nbsp;·&nbsp; 9:00 AM onwards</p>
+              </div>
+            </div>
+            <div class="venue-info-item">
+              <div class="venue-icon">🕌</div>
+              <div class="venue-info-text">
+                <h4>Prayer Facilities</h4>
+                <p>Separate Musallah for brothers & sisters. All five prayer times observed.</p>
+              </div>
+            </div>
+            <div class="venue-info-item" style="border:none;">
+              <div class="venue-icon">🍽️</div>
+              <div class="venue-info-text">
+                <h4>Food</h4>
+                <p>100% Halal & Zabiha. Veg, vegan & allergen options available.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery">
+    <div class="section-frame">
+      <!-- Gallery Corners: Minimalist elegant boxes -->
+      <div class="section-corner sc-tl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="5" y="5" width="25" height="25" stroke="#D4A224" stroke-width="1" />
+          <rect x="10" y="10" width="30" height="30" stroke="#D4A224" stroke-width="0.5" opacity="0.5" />
+          <circle cx="5" cy="5" r="2" fill="#D4A224" />
+          <path d="M5,30 L5,45" stroke="#D4A224" stroke-width="1" />
+          <path d="M30,5 L45,5" stroke="#D4A224" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="section-corner sc-tr">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="5" y="5" width="25" height="25" stroke="#D4A224" stroke-width="1" />
+          <rect x="10" y="10" width="30" height="30" stroke="#D4A224" stroke-width="0.5" opacity="0.5" />
+          <circle cx="5" cy="5" r="2" fill="#D4A224" />
+          <path d="M5,30 L5,45" stroke="#D4A224" stroke-width="1" />
+          <path d="M30,5 L45,5" stroke="#D4A224" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="section-corner sc-bl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="5" y="5" width="25" height="25" stroke="#D4A224" stroke-width="1" />
+          <rect x="10" y="10" width="30" height="30" stroke="#D4A224" stroke-width="0.5" opacity="0.5" />
+          <circle cx="5" cy="5" r="2" fill="#D4A224" />
+          <path d="M5,30 L5,45" stroke="#D4A224" stroke-width="1" />
+          <path d="M30,5 L45,5" stroke="#D4A224" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="section-corner sc-br">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="5" y="5" width="25" height="25" stroke="#D4A224" stroke-width="1" />
+          <rect x="10" y="10" width="30" height="30" stroke="#D4A224" stroke-width="0.5" opacity="0.5" />
+          <circle cx="5" cy="5" r="2" fill="#D4A224" />
+          <path d="M5,30 L5,45" stroke="#D4A224" stroke-width="1" />
+          <path d="M30,5 L45,5" stroke="#D4A224" stroke-width="1" />
+        </svg>
+      </div>
+      <!-- Mosque background stars -->
+      <span class="mosque-star" style="left:8%;top:12%;font-size:11px;animation-duration:2.6s;">✦</span>
+      <span class="mosque-star" style="left:88%;top:9%;font-size:13px;animation-duration:3.2s;">✦</span>
+      <span class="mosque-star" style="left:52%;top:4%;font-size:9px;animation-duration:4.1s;">✦</span>
+      <span class="mosque-star" style="left:20%;top:85%;font-size:10px;animation-duration:3.5s;">✦</span>
+      <span class="mosque-star" style="left:75%;top:80%;font-size:12px;animation-duration:2.9s;">✦</span>
+      <!-- Heading -->
+      <div class="gallery-heading-wrap">
+        <div class="section-title anim-down">Moments of Grace</div>
+        <div class="section-sub anim-up anim-d1">لَحَظَاتٌ مِنَ النِّعْمَة</div>
+      </div>
+      <!-- 5 Shaped photos ✦ absolutely positioned in stage, no scroll -->
+      <div class="gallery-shapes-stage">
+        <!-- PIECE 1 ✦ Top Left -->
+        <div class="gs-item gs-piece1 anim-left anim-d1" style="left: 10%; top: -15%; z-index: 11;">
+          <div class="gs-photo"><img src="images/wedding1.jpg" alt="A Sacred Seat" loading="lazy"></div>
+          <div class="gs-label" style="top: 20%; left: 10%;">A Sacred Seat</div>
+        </div>
+        <!-- PIECE 2 ✦ Bottom Left -->
+        <div class="gs-item gs-piece4 anim-up anim-d2" style="left: 15%; top: 40%; z-index: 12;">
+          <div class="gs-photo"><img src="images/wedding2.jpg" alt="The Ring of Promise" loading="lazy"></div>
+          <div class="gs-label" style="bottom: 10%; left: 30%;">Ring of Promise</div>
+        </div>
+        <!-- PIECE 3 ✦ Centerpiece (Fixed shifting) -->
+        <div class="gs-item gs-piece2 anim-zoom anim-d3" style="left: 50%; top: 5%; z-index: 20;">
+          <div class="gs-photo"><img src="images/wedding3.jpg" alt="The Nikah Blessing" loading="lazy"></div>
+          <div class="gs-label gs-label-center" style="top: -10px; left: 50%;">The Nikah Blessing</div>
+        </div>
+        <!-- PIECE 4 ✦ Bottom Right (Elevated to stay on top) -->
+        <div class="gs-item gs-piece5 anim-right anim-d2" style="right: 15%; top: 38%; z-index: 15;">
+          <div class="gs-photo"><img src="images/wedding4.jpg" alt="Joy and Love" loading="lazy"></div>
+          <div class="gs-label" style="bottom: 10%; right: 20%;">Joy & Love</div>
+        </div>
+        <!-- PIECE 5 ✦ Top Right (Lowered to prevent face overlap) -->
+        <div class="gs-item gs-piece3 anim-right anim-d4" style="right: 8%; top: -10%; z-index: 13;">
+          <div class="gs-photo"><img src="images/wedding5.jpg" alt="Together Forever" loading="lazy"></div>
+          <div class="gs-label" style="top: 20%; right: 15%;">Together Forever</div>
+        </div>
+      </div><!-- end gallery-shapes-stage -->
+    </div>
+  </section>
+  <!-- ===== DUA ===== -->
+  <section id="dua">
+    <div class="section-frame">
+      <!-- Dua Corners: Flowing Calligraphic Droplets -->
+      <div class="section-corner sc-tl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,25 25,25 T45,5" stroke="#D4A224" stroke-width="1.5" fill="none" />
+          <circle cx="25" cy="25" r="2" fill="#D4A224" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-tr">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,25 25,25 T45,5" stroke="#D4A224" stroke-width="1.5" fill="none" />
+          <circle cx="25" cy="25" r="2" fill="#D4A224" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-bl">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,25 25,25 T45,5" stroke="#D4A224" stroke-width="1.5" fill="none" />
+          <circle cx="25" cy="25" r="2" fill="#D4A224" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="section-corner sc-br">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M5,45 Q5,25 25,25 T45,5" stroke="#D4A224" stroke-width="1.5" fill="none" />
+          <circle cx="25" cy="25" r="2" fill="#D4A224" />
+          <circle cx="5" cy="45" r="2" fill="#D4A224" />
+          <circle cx="45" cy="5" r="2" fill="#D4A224" />
+        </svg>
+      </div>
+      <div class="dua-box">
+        <div class="fade-up" style="text-align:center;">
+          <div class="section-title">Our Du'a For You</div>
+          <div class="section-sub">دُعَاؤُنَا لَكُمْ</div>
+        </div>
+        <div class="fade-up" style="text-align:center;">
+          <div class="dua-arabic anim-zoom">اللَّهُمَّ أَلِّفْ بَيْنَ قُلُوبِهِمَا<br>وَأَصْلِحْ ذَاتَ
+            بَيْنِهِمَا<br>وَاهْدِهِمَا سُبُلَ السَّلَامِ<br>وَبَارِكْ لَهُمَا فِي ذُرِّيَّتِهِمَا</div>
+          <div class="dua-trans">
+            "O Allah, bring their hearts together, set right their relationship,<br>
+            guide them to the paths of peace, and bless them in their offspring."
+          </div>
+          <div class="dua-src">✦ A Blessed Supplication for the Newlyweds</div>
+        </div>
+        <div class="islamic-divider fade-up">
+          <div class="idl"></div>
+          <span style="color:var(--gold);font-size:1.5rem;">✦</span>
+          <div class="idl"></div>
+        </div>
+        <div class="fade-up" style="text-align:center;">
+          <p
+            style="font-size:.95rem;color:var(--cream);opacity:.58;font-style:italic;line-height:1.8;max-width:580px;margin:0 auto 12px;">
+            We are humbled and grateful for your presence and du'a. Your blessings mean the world to Saklen & Rinaj
+            as
+            they begin this sacred journey together.
+          </p>
+          <div style="font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold);opacity:.65;">جَزَاكُمُ اللهُ خَيْرًا
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== RSVP ===== -->
+  <section id="rsvp">
+    <!-- RSVP Corners: Intersecting Lines -->
+    <div class="section-corner sc-tl">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+        <path d="M15,45 L15,15 L45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+        <line x1="15" y1="5" x2="5" y2="15" stroke="#D4A224" stroke-width="1" />
+        <circle cx="5" cy="45" r="2" fill="#D4A224" />
+        <circle cx="45" cy="5" r="2" fill="#D4A224" />
+      </svg>
+    </div>
+    <div class="section-corner sc-tr">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+        <path d="M15,45 L15,15 L45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+        <line x1="15" y1="5" x2="5" y2="15" stroke="#D4A224" stroke-width="1" />
+        <circle cx="5" cy="45" r="2" fill="#D4A224" />
+        <circle cx="45" cy="5" r="2" fill="#D4A224" />
+      </svg>
+    </div>
+    <div class="section-corner sc-bl">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+        <path d="M15,45 L15,15 L45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+        <line x1="15" y1="5" x2="5" y2="15" stroke="#D4A224" stroke-width="1" />
+        <circle cx="5" cy="45" r="2" fill="#D4A224" />
+        <circle cx="45" cy="5" r="2" fill="#D4A224" />
+      </svg>
+    </div>
+    <div class="section-corner sc-br">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <path d="M5,45 L5,5 L45,5" stroke="#D4A224" stroke-width="1.5" />
+        <path d="M15,45 L15,15 L45,15" stroke="#D4A224" stroke-width="0.5" opacity="0.6" />
+        <line x1="15" y1="5" x2="5" y2="15" stroke="#D4A224" stroke-width="1" />
+        <circle cx="5" cy="45" r="2" fill="#D4A224" />
+        <circle cx="45" cy="5" r="2" fill="#D4A224" />
+      </svg>
+    </div>
+    <div class="rsvp-inner">
+      <div class="fade-up">
+        <div class="section-title">Kindly Respond</div>
+        <div class="section-sub">مَرَاسِمُ النِّكَاحِ الْمُبَارَك</div>
+        <p style="font-size:1rem;color:var(--cream);opacity:.58;font-style:italic;margin-top:16px;line-height:1.85;">
+          Please let us know if you will be joining us. We kindly request your RSVP by 1st February 2026.
+        </p>
+      </div>
+      <form class="rsvp-form fade-up" onsubmit="handleRsvp(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+1 (000) 000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <select>
+              <option>1 ✦ Just me</option>
+              <option>2 ✦ Two of us</option>
+              <option>3 ✦ Three</option>
+              <option>4 ✦ Four</option>
+              <option>5+ ✦ Family</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Which event(s) will you attend?</label>
+            <select>
+              <option>🌙 Nikah Ceremony</option>
+              <option>🌹 Walima Feast</option>
+              <option>✨ Both Events</option>
+              <option>❌ Unable to attend</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Du'a & Message (Optional)</label>
+          <textarea rows="4" placeholder="Share a blessing, prayer or warm words for Saklen & Rinaj..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send My RSVP ✦</button>
+      </form>
+    </div>
+  </section>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
+    <div class="footer-names">Saklen & Rinaj</div>
+    <div class="footer-names-ar">سَكْلِن ✦ رِينَاج</div>
+    <div class="footer-date">15th February 2026 &nbsp;|&nbsp; 15 Sha'ban 1446 AH</div>
+
+    <div
+      style="margin:28px auto;width:110px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);">
+    </div>
+    <div class="footer-bottom">Made with love & faith &nbsp;·&nbsp; بُنِيَ بِالْمَحَبَّةِ وَالْإِيمَانِ</div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
